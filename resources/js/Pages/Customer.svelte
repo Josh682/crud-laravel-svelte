@@ -1,5 +1,7 @@
 <script>
     import Layout from '@/Shared/Layout.svelte'
+    import Pagination from '@/Shared/Pagination.svelte'
+    import { inertia } from '@inertiajs/svelte';
     export let customers;
 </script>
 
@@ -7,7 +9,7 @@
     <title>Customers</title>
 </svelte:head>
 <Layout>
-    <table class="table">
+    <table class="table table-small">
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -18,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-            {#each customers as customer}
+            {#each customers.data as customer}
                 <tr>
                     <th scope="row">{customer.id}</th>
                     <td>{customer.name}</td>
@@ -33,4 +35,8 @@
             {/each}
         </tbody>
       </table>
+      <Pagination links="{customers.links}"/>
+
+      <a href="/customers/create" use:inertia class="btn btn-primary btn-small">Create Customer</a>
+
 </Layout>

@@ -14,7 +14,16 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers=Customer::get(['id','name','email', 'phone']);
+        $customers=Customer::paginate(5) ->through(function($customer){
+            return[
+                'id' => $customer -> id,
+                'name' => $customer -> name,
+                'email' => $customer -> email,
+                'phone' => $customer -> phone,
+            ];
+        }
+    
+    );
 
         return Inertia::render('Customer', [
             'customers'=>$customers
@@ -26,7 +35,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('CreateCustomer');
     }
 
     /**
@@ -34,7 +43,13 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        $customer= new Customer;
+        $customer->name=$request->name;
+        $customer->email=$request->email;
+        $customer->phone=$request->phone;
+        $customer->save();
+
+        return redirect('/customers')->with('success', 'New Customer created successfully');
     }
 
     /**

@@ -8,4 +8,10 @@ createInertiaApp({
   setup({ el, App, props }) {
     new App({ target: el, props })
   },
+  progress:{
+    delay:250,
+    color: '#4c9cd8',
+    includeCSS:true,
+    showSpinner:true, 
+  },
 })
