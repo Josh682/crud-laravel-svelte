@@ -65,7 +65,9 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return Inertia::render('EditCustomer', [
+            'customer'=>$customer,
+        ]) ;
     }
 
     /**
@@ -73,7 +75,12 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->name=$request->name;
+        $customer->email=$request->email;
+        $customer->phone=$request->phone;
+        $customer->save();
+
+        return redirect('/customers')->with('success', 'Customer edited successfully');
     }
 
     /**

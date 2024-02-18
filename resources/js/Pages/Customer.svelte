@@ -28,7 +28,7 @@
                     <td>{customer.phone}</td>
                     <td>
                         <button class="btn btn-info">View</button>
-                        <button class="btn btn-primary">Edit</button>
+                        <a use:inertia href="/customers/{customer.id}/edit" class="btn btn-primary">Edit</a>
                         <button class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
