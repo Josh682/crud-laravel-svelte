@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers=Customer::paginate(5) ->through(function($customer){
+        $customers=Customer::paginate(10) ->through(function($customer){
             return[
                 'id' => $customer -> id,
                 'name' => $customer -> name,
@@ -90,6 +90,8 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+
+        return redirect('/customers')->with('success', 'Customer deleted');
     }
 }

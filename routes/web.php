@@ -14,3 +14,4 @@ Route::post('customers', [CustomerController::class,'store']);
 Route::get('/customers/{customer}/edit',[CustomerController::class, 'edit']);
 Route::put('customers/{customer}', [CustomerController::class,'update']);  
 Route::get('/customers/{customer}',[CustomerController::class, 'show']);
+Route::delete('/customers/{customer}',[CustomerController::class, 'destroy']);
