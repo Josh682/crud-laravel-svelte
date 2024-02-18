@@ -27,7 +27,7 @@
                     <td>{customer.email}</td>
                     <td>{customer.phone}</td>
                     <td>
-                        <button class="btn btn-info">View</button>
+                        <a use:inertia href="/customers/{customer.id} " class="btn btn-info">View</a>
                         <a use:inertia href="/customers/{customer.id}/edit" class="btn btn-primary">Edit</a>
                         <button class="btn btn-danger">Delete</button>
                     </td>
